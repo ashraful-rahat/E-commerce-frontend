@@ -1,5 +1,11 @@
+import HeroBanner from "./components/HeroBanner";
+
 const page = () => {
-  return <div>hello next js</div>;
+  return (
+    <div className="text-4xl">
+      <HeroBanner />
+    </div>
+  );
 };
 
 export default page;
