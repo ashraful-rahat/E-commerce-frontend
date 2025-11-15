@@ -25,7 +25,7 @@ const Navbar = () => {
     { label: "WOMEN", href: "/women" },
     { label: "KIDS", href: "/kids" },
     { label: "ALL PRODUCTS", href: "/products" },
-    { label: "SALE", href: "/sale" },
+    { label: "FLASH-SALE", href: "/flash-sale" },
   ];
 
   const containerVariants: Variants = {
