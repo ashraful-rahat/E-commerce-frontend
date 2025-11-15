@@ -343,7 +343,7 @@ export default function FlashSalePage() {
               No flash sale products found
             </h3>
             <p className="text-gray-600 max-w-md mx-auto mb-8 text-lg leading-relaxed">
-              We're currently updating our flash sale collection. Please check
+              We&#39;re currently updating our flash sale collection. Please check
               back soon.
             </p>
           </div>
