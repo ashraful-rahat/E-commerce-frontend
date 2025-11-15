@@ -1,24 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #000000;
   --foreground: #000000;
 }
 
-@theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans), var(--font-roboto), sans-serif;
-  --font-mono: var(--font-geist-mono), monospace;
-}
-
 /* Override dark mode to always use light theme */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #ffffff; /* Force white background */
-    --foreground: #000000; /* Force black text */
-  }
-}
 
 body {
   background: var(--background);
@@ -30,33 +17,3 @@ body {
 }
 
 /* Ensure all elements use the same color scheme */
-* {
-  color: inherit;
-}
-
-/* Optional: Force light scrollbars */
-@media (prefers-color-scheme: dark) {
-  /* Webkit browsers (Chrome, Safari, Edge) */
-  ::-webkit-scrollbar {
-    width: 12px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 6px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8;
-  }
-
-  /* Firefox */
-  html {
-    scrollbar-color: #c1c1c1 #f1f1f1;
-    scrollbar-width: thin;
-  }
-}

@@ -6,11 +6,20 @@ import Link from "next/link";
 import { useState } from "react";
 import { Product } from "../lib/productService";
 
-interface ProductCardProps {
+// ----------------------
+// Product Card Props
+// ----------------------
+export interface ProductCardProps {
   product: Product;
+  variant?: "light" | "dark"; // theme variant
+  layout?: "grid" | "list"; // card layout
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({
+  product,
+  variant = "light",
+  layout = "grid",
+}: ProductCardProps) {
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   const discountPercentage =
@@ -21,11 +30,32 @@ export default function ProductCard({ product }: ProductCardProps) {
         )
       : 0;
 
+  // ----------------------
+  // Styles based on variant
+  // ----------------------
+  const cardBg =
+    variant === "dark"
+      ? "bg-gray-900 text-white border-gray-700"
+      : "bg-white text-gray-900 border-gray-200";
+
+  const titleHover =
+    variant === "dark" ? "hover:text-blue-400" : "hover:text-blue-600";
+
   return (
-    <div className="group bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-300">
-      {/* Product Image with Link */}
-      <Link href={`/products/${product.slug}`}>
-        <div className="relative h-80 bg-gray-100 overflow-hidden">
+    <div
+      className={`group rounded-lg border overflow-hidden hover:shadow-lg transition-all duration-300 ${
+        layout === "list" ? "flex gap-4 p-4" : ""
+      } ${cardBg}`}
+    >
+      {/* ---------------------- */}
+      {/* IMAGE SECTION */}
+      {/* ---------------------- */}
+      <Link href={`/products/${product.slug}`} className="block">
+        <div
+          className={`relative overflow-hidden ${
+            layout === "list" ? "w-48 h-48 rounded-lg" : "h-80"
+          } bg-gray-100`}
+        >
           <Image
             src={product.images[0] || "/images/placeholder.jpg"}
             alt={product.name}
@@ -40,7 +70,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             </div>
           )}
 
-          {/* Wishlist Button */}
+          {/* Wishlist */}
           <button
             onClick={(e) => {
               e.preventDefault();
@@ -63,10 +93,14 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
       </Link>
 
-      {/* Product Info */}
-      <div className="p-4">
+      {/* ---------------------- */}
+      {/* PRODUCT INFO */}
+      {/* ---------------------- */}
+      <div className={`${layout === "list" ? "flex-1" : "p-4"}`}>
         <Link href={`/products/${product.slug}`}>
-          <h3 className="font-semibold text-lg mb-2 hover:text-blue-600 transition-colors line-clamp-2">
+          <h3
+            className={`font-semibold text-lg mb-2 transition-colors line-clamp-2 ${titleHover}`}
+          >
             {product.name}
           </h3>
         </Link>
@@ -77,9 +111,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         {/* Price */}
         <div className="flex items-center gap-2 mb-3">
-          <span className="text-xl font-bold text-gray-900">
-            ৳{product.price}
-          </span>
+          <span className="text-xl font-bold">৳{product.price}</span>
           {product.compareAtPrice > product.price && (
             <span className="text-sm text-gray-500 line-through">
               ৳{product.compareAtPrice}
@@ -87,13 +119,13 @@ export default function ProductCard({ product }: ProductCardProps) {
           )}
         </div>
 
-        {/* Brand & Category */}
+        {/* Brand + Category */}
         <div className="flex items-center justify-between text-sm text-gray-500">
           <span>{product.brand}</span>
           <span>{product.category}</span>
         </div>
 
-        {/* Add to Cart Button */}
+        {/* Add to Cart */}
         <button className="w-full mt-3 bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition-colors font-medium flex items-center justify-center gap-2">
           <ShoppingBag size={16} />
           Add to Cart
