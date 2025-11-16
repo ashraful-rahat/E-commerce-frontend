@@ -103,3 +103,14 @@ export const getNewArrivals = async (
     return [];
   }
 };
+// Get Featured Products
+export const getFeaturedProducts = async (): Promise<Product[]> => {
+  try {
+    const response = await axiosInstance.get(`/products?isFeatured=true`);
+    console.log("⭐ Featured Products API response:", response.data);
+    return response.data?.data || [];
+  } catch (error) {
+    console.error("Error fetching featured products:", error);
+    return [];
+  }
+};

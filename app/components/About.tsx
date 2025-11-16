@@ -90,9 +90,9 @@ export default function FashionBrand() {
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <button className="text-white px-8 py-4 font-medium tracking-wider uppercase text-sm hover:bg-gray-100 hover:scale-105 transform transition-all duration-300 flex items-center gap-2 justify-center border border-black shadow-lg hover:shadow-xl">
-                <ShoppingBag size={18} />
-                Shop Collection
+              <button className="bg-white text-black px-8 py-4 font-medium tracking-wider uppercase text-sm hover:bg-gray-100 hover:scale-105 transform transition-all duration-300 flex items-center gap-2 justify-center border border-black shadow-lg hover:shadow-xl">
+                Shop now
+                <ShoppingBag size={16} />
               </button>
               <button className="bg-white text-black px-8 py-4 font-medium tracking-wider uppercase text-sm hover:bg-gray-100 hover:scale-105 transform transition-all duration-300 flex items-center gap-2 justify-center border border-black shadow-lg hover:shadow-xl">
                 View Lookbook
